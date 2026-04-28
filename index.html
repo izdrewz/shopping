@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopping Tracker</title>
+  <meta name="description" content="Grocery list, wishlist, shop price tracker, sale tracker, and repurchase helper.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <h1>Shopping</h1>
+      <p class="subtitle">Groceries, things to try, products you’re considering, sale prices, shops, images, and repurchase reminders.</p>
+    </div>
+    <nav class="top-actions">
+      <a href="https://izdrewz.github.io/dash/">Dashboard</a>
+      <button id="exportData" type="button">Export</button>
+      <label class="file-button">Import<input id="importData" type="file" accept="application/json"></label>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="panel add-panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Add item</p>
+          <h2>Quick add</h2>
+        </div>
+        <button id="clearForm" class="ghost" type="button">Clear</button>
+      </div>
+
+      <form id="itemForm" class="item-form">
+        <input type="hidden" id="editingId">
+        <label>Item name<input id="itemName" required placeholder="Milk, jeans, yarn, snack to try..."></label>
+        <div class="form-row">
+          <label>Category
+            <select id="category">
+              <option>Food</option>
+              <option>Drinks</option>
+              <option>Clothes</option>
+              <option>Crafts</option>
+              <option>Home</option>
+              <option>Beauty</option>
+              <option>Study</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Need / want
+            <select id="needWant">
+              <option>Need</option>
+              <option>Want</option>
+              <option>Try</option>
+              <option>Maybe</option>
+            </select>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Usual quantity<input id="quantity" placeholder="1, 2 packs, 500g..."></label>
+          <label>Repurchase type
+            <select id="repurchaseType">
+              <option value="habit">Estimate from buying habit</option>
+              <option value="manual">Manual days</option>
+              <option value="none">No repurchase reminder</option>
+            </select>
+          </label>
+        </div>
+        <label>Manual repurchase days<input id="manualDays" type="number" min="1" step="1" placeholder="e.g. 14"></label>
+        <label>Product page URL<input id="productUrl" type="url" placeholder="https://shop.example/product"></label>
+        <label>Image URL<input id="imageUrl" type="url" placeholder="Direct image link if you have one"></label>
+        <label>Notes<textarea id="notes" rows="3" placeholder="Why you want it, size/flavour, alternatives, allergy notes, etc."></textarea></label>
+        <button type="submit">Save item</button>
+      </form>
+    </section>
+
+    <section class="panel list-panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Shopping list</p>
+          <h2>Items</h2>
+        </div>
+        <button id="addDemo" class="ghost" type="button">Load examples</button>
+      </div>
+
+      <div class="filters">
+        <label>Search<input id="search" type="search" placeholder="Search item, shop, note..."></label>
+        <label>Category<select id="categoryFilter"><option value="">All categories</option></select></label>
+        <label>Need/want<select id="needWantFilter"><option value="">All</option><option>Need</option><option>Want</option><option>Try</option><option>Maybe</option></select></label>
+        <label>Sort<select id="sortMode"><option value="category">Category</option><option value="need">Need first</option><option value="next">Repurchase soon</option><option value="price">Lowest price</option><option value="recent">Recently bought</option></select></label>
+      </div>
+
+      <div id="summary" class="summary"></div>
+      <div id="items" class="items"></div>
+    </section>
+  </main>
+
+  <dialog id="priceDialog">
+    <form method="dialog" class="dialog-inner">
+      <h2 id="priceDialogTitle">Prices</h2>
+      <input type="hidden" id="priceItemId">
+      <div id="pricesList" class="prices-list"></div>
+      <h3>Add shop price</h3>
+      <div class="form-row">
+        <label>Shop<input id="shopName" placeholder="Tesco, Aldi, Amazon..."></label>
+        <label>Price<input id="shopPrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
+      </div>
+      <div class="form-row">
+        <label>Sale price<input id="salePrice" type="number" min="0" step="0.01" placeholder="Optional"></label>
+        <label>Currency<input id="currency" value="£"></label>
+      </div>
+      <label>Product URL<input id="shopUrl" type="url" placeholder="Shop link"></label>
+      <label>Price note<input id="priceNote" placeholder="Clubcard, multipack, size, sale end date..."></label>
+      <div class="dialog-actions">
+        <button id="savePrice" type="button">Add price</button>
+        <button class="ghost" value="cancel">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
