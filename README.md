@@ -1,6 +1,6 @@
 # Shopping Tracker
 
-A local-first shopping, grocery, wishlist, price-comparison, sale-tracking, and repurchase helper.
+A local-first shopping, grocery, wishlist, price-comparison, sale-tracking, repurchase helper, and ChatGPT-assisted price-check workflow.
 
 ## What it tracks
 
@@ -30,11 +30,28 @@ A local-first shopping, grocery, wishlist, price-comparison, sale-tracking, and 
 - Repurchase estimates based on buying habits
 - Manual repurchase reminders
 
+## ChatGPT price-check workaround
+
+Because a static GitHub Pages app cannot reliably scrape retailer websites itself, the app includes a ChatGPT handoff flow.
+
+Use it like this:
+
+1. Add product names and product links to Shopping.
+2. Click **Copy ChatGPT prompt**.
+3. Open ChatGPT.
+4. Paste the prompt.
+5. ChatGPT should check product links / shop information and return strict JSON.
+6. Copy the JSON response.
+7. Paste it into **Paste ChatGPT JSON response** in Shopping.
+8. Click **Apply price/image updates**.
+
+The app then merges returned prices, sale prices, shop links, notes, and image URLs into your saved items.
+
 ## Important limitation
 
 This is a static GitHub Pages app. It cannot reliably scrape live prices or product images from every shop automatically, because many retailer sites block browser scraping and prices change often.
 
-Instead, it lets you save shop links, image links, price snapshots, sale prices, and purchase history yourself. That is more reliable and keeps the app local-first.
+Instead, it lets you save shop links, image links, price snapshots, sale prices, and purchase history yourself. The ChatGPT prompt workflow is a workaround for checking products outside the app and importing structured updates.
 
 ## How repurchase estimates work
 
@@ -47,6 +64,8 @@ Instead, it lets you save shop links, image links, price snapshots, sale prices,
 ## Privacy
 
 Your shopping data is stored in your browser using localStorage. Export backups regularly if the list becomes important.
+
+The generated ChatGPT prompt contains the product names and links you have saved. Review the prompt before pasting it elsewhere.
 
 ## GitHub Pages
 
