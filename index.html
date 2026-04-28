@@ -73,6 +73,26 @@
       </form>
     </section>
 
+    <section class="panel ai-panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">ChatGPT price check</p>
+          <h2>Update prices with a prompt</h2>
+        </div>
+        <a class="ghost-link" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a>
+      </div>
+      <p class="hint">Copy a prepared prompt, paste it into ChatGPT, then paste ChatGPT’s JSON response below to update saved prices/images. This keeps the app static and avoids unreliable shop scraping.</p>
+      <div class="ai-actions">
+        <button id="copyAiPrompt" type="button">Copy ChatGPT prompt</button>
+        <button id="downloadAiPrompt" class="ghost" type="button">Download prompt</button>
+      </div>
+      <label>Paste ChatGPT JSON response<textarea id="aiJsonInput" rows="6" placeholder='Paste JSON here, for example { "updates": [...] }'></textarea></label>
+      <div class="ai-actions">
+        <button id="applyAiJson" type="button">Apply price/image updates</button>
+        <button id="clearAiJson" class="ghost" type="button">Clear</button>
+      </div>
+    </section>
+
     <section class="panel list-panel">
       <div class="section-head">
         <div>
@@ -118,5 +138,6 @@
   </dialog>
 
   <script src="app.js"></script>
+  <script src="ai-update.js"></script>
 </body>
 </html>
